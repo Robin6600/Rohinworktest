@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en" >
+<head>
+  <meta charset="UTF-8">
+  <title>Untitled</title>
+  <link rel="stylesheet" href="./style.css">
+
+</head>
+<body>
+<!-- partial:index.partial.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard | Shikh Rasel Robin</title>
+    <link rel="stylesheet" href="./style.css">
+</head>
+<body>
+
+<canvas id="matrix-bg"></canvas>
+
+<div class="dashboard-container">
+    <header class="dashboard-header">
+        <div class="user-profile">
+            <img id="profile-pic" src="https://live.staticflickr.com/65535/54594083729_fbc82f765b_b.jpg" alt="Profile Picture">
+            <div class="user-info">
+                <h1>Shikh Rasel Robin</h1>
+                <p>Creative Content Creator</p>
+            </div>
+        </div>
+        
+        <div class="time-attendance">
+            <div id="live-clock" class="clock"></div>
+            <div class="attendance-controls">
+                <button id="office-in-btn">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 3h4a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2h-4"/><polyline points="10 17 15 12 10 7"/><line x1="15" y1="12" x2="3" y2="12"/></svg>
+                    <span>Office In</span>
+                </button>
+                <button id="office-out-btn">
+                     <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><polyline points="16 17 21 12 16 7"/><line x1="21" y1="12" x2="9" y2="12"/></svg>
+                    <span>Office Out</span>
+                </button>
+                <button id="reset-time-btn">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="23 4 23 10 17 10"></polyline><path d="M20.49 15a9 9 0 1 1-2.12-9.36L23 10"></path></svg>
+                    <span>Reset</span>
+                </button>
+            </div>
+            <div class="attendance-log">
+                <p><strong>IN:</strong> <span id="in-time-display">-</span></p>
+                <p><strong>OUT:</strong> <span id="out-time-display">-</span></p>
+            </div>
+        </div>
+    </header>
+
+    <main class="main-content">
+        <div class="tasks-section card">
+            <h2>
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"></path><rect x="8" y="2" width="8" height="4" rx="1" ry="1"></rect></svg>
+                My Responsibilities
+            </h2>
+            <div class="task-buttons">
+                <button class="task-btn" data-task="Video Shoot">Video Shoot</button>
+                <button class="task-btn" data-task="Video Edit">Video Edit</button>
+                <button class="task-btn" data-task="Script Writing">Script Writing</button>
+                <button class="task-btn" data-task="New Work Plan">New Work Plan</button>
+                <button class="task-btn" data-task="Other tasks">Other tasks</button>
+                <button class="task-btn" data-task="Meeting notes">Meeting notes</button>
+            </div>
+            <div id="task-notes-container">
+                </div>
+        </div>
+
+        <div class="calendar-section card">
+            <h2>
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>
+                Calendar
+            </h2>
+            <div class="calendar-container">
+                <div class="calendar-header">
+                    <button id="prev-month-btn">&lt;</button>
+                    <h3 id="month-year-header"></h3>
+                    <button id="next-month-btn">&gt;</button>
+                </div>
+                <div class="calendar-weekdays">
+                    <div>Sun</div><div>Mon</div><div>Tue</div><div>Wed</div><div>Thu</div><div>Fri</div><div>Sat</div>
+                </div>
+                <div id="calendar-days" class="calendar-days-grid"></div>
+            </div>
+        </div>
+    </main>
+
+    <div class="card" style="margin-top: 2rem;">
+        <h2>
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="17 8 12 3 7 8"></polyline><line x1="12" y1="3" x2="12" y2="15"></line></svg>
+            Data Management
+        </h2>
+        <div class="data-controls" style="display: flex; gap: 1rem; margin-top: 1rem;">
+            <button id="save-data-btn" class="task-btn">Save Data to File</button>
+            <button id="load-data-btn" class="task-btn">Load Data from File</button>
+            <input type="file" id="file-input" accept=".json" style="display: none;">
+        </div>
+    </div>
+</div>
+
+<div id="password-modal" class="modal-overlay" style="display: none;">
+    <div class="modal-content">
+        <h2>Enter Password</h2>
+        <p>Please enter the password to perform this action.</p>
+        <input type="password" id="password-input" placeholder="Password">
+        <div class="modal-actions">
+            <button id="submit-password-btn">Submit</button>
+            <button id="cancel-reset-btn">Cancel</button>
+        </div>
+        <p id="password-error" class="error-message" style="display: none;">Incorrect Password!</p>
+    </div>
+</div>
+
+<div id="notes-password-modal" class="modal-overlay" style="display: none;">
+    <div class="modal-content">
+        <h2>Unlock Notes</h2>
+        <p>Please enter the password to write or edit notes.</p>
+        <input type="password" id="notes-password-input" placeholder="Password">
+        <div class="modal-actions">
+            <button id="submit-notes-password-btn">Unlock</button>
+            <button id="cancel-notes-btn">Cancel</button>
+        </div>
+        <p id="notes-password-error" class="error-message" style="display: none;">Incorrect Password!</p>
+    </div>
+</div>
+
+<div id="info-modal" class="modal-overlay" style="display: none;">
+    <div class="modal-content">
+        <h2 id="info-modal-title">শেখ রাসেল রবিন</h2>
+        <p id="info-modal-message"></p>
+        <div class="modal-actions">
+            <button id="info-modal-close-btn">ঠিক আছে</button>
+        </div>
+    </div>
+</div>
+
+<script src="./script.js"></script>
+
+</body>
+</html>
+<!-- partial -->
+  <script  src="./script.js"></script>
+
+</body>
+</html>

@@ -1,0 +1,537 @@
+/* --- Google Fonts Import --- */
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;700&family=Poppins:wght@300;400;500&display=swap');
+
+/* --- Custom Properties (Variables) --- */
+:root {
+    --bg-color: #111827; /* Deep Slate Blue */
+    --card-bg-color: rgba(31, 41, 55, 0.5); /* Semi-transparent Slate */
+    --border-color: rgba(75, 85, 99, 0.5);
+    --primary-accent: #22d3ee; /* Vibrant Cyan */
+    --primary-accent-dark: #0891b2;
+    --text-primary: #f9fafb; /* Almost White */
+    --text-secondary: #d1d5db; /* Light Gray */
+    --red: #f43f5e;
+    --green: #34d399;
+    --shadow-color: rgba(34, 211, 238, 0.2);
+    --font-body: 'Poppins', sans-serif;
+    --font-heading: 'Orbitron', sans-serif;
+}
+
+/* --- General Body and typography Styling --- */
+body {
+    font-family: var(--font-body);
+    background-color: var(--bg-color);
+    background-image: radial-gradient(circle at top left, rgba(34, 211, 238, 0.1), transparent 30%),
+                      radial-gradient(circle at bottom right, rgba(139, 92, 246, 0.1), transparent 30%);
+    color: var(--text-primary);
+    margin: 0;
+    line-height: 1.6;
+    overflow-x: hidden;
+}
+
+/* --- Matrix Background --- */
+#matrix-bg {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    opacity: 0.5;
+}
+
+/* --- Keyframe Animations --- */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* --- Main Dashboard Container --- */
+.dashboard-container {
+    max-width: 1500px;
+    margin: 2rem auto;
+    padding: 2rem;
+    animation: fadeInUp 0.5s ease-out;
+}
+
+/* --- Header Section --- */
+.dashboard-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 2rem;
+    padding: 1.5rem;
+    margin-bottom: 2rem;
+    background: var(--card-bg-color);
+    border: 1px solid var(--border-color);
+    border-radius: 12px;
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
+}
+
+.user-profile {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+}
+
+#profile-pic {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 3px solid var(--primary-accent);
+    box-shadow: 0 0 15px var(--shadow-color);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+#profile-pic:hover {
+    transform: scale(1.1);
+    box-shadow: 0 0 25px var(--shadow-color);
+}
+
+.user-info h1 {
+    font-family: var(--font-heading);
+    margin: 0;
+    font-size: 1.8rem;
+    font-weight: 500;
+    color: var(--text-primary);
+    letter-spacing: 1px;
+}
+
+.user-info p {
+    margin: 0;
+    font-size: 1rem;
+    color: var(--text-secondary);
+}
+
+.time-attendance {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+}
+
+.clock {
+    font-family: var(--font-heading);
+    font-size: 2rem;
+    font-weight: 700;
+    color: var(--primary-accent);
+    text-shadow: 0 0 8px var(--shadow-color);
+    width: 160px;
+    text-align: center;
+}
+
+.attendance-controls {
+    display: flex;
+    gap: 0.75rem;
+}
+
+.attendance-controls button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    background: linear-gradient(145deg, #1f2937, #111827);
+    color: var(--text-secondary);
+    border: 1px solid var(--border-color);
+    padding: 0.75rem 1.25rem;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: 500;
+    font-size: 0.9rem;
+    font-family: var(--font-body);
+    transition: all 0.2s ease-in-out;
+    box-shadow: 2px 2px 5px #0c1017, -2px -2px 5px #26344a;
+}
+
+.attendance-controls button:hover {
+    transform: translateY(-2px);
+    box-shadow: 4px 4px 8px #0c1017, -4px -4px 8px #26344a;
+}
+
+.attendance-controls button:active {
+    transform: translateY(1px);
+    box-shadow: inset 2px 2px 5px #0c1017, inset -2px -2px 5px #26344a;
+}
+
+#office-in-btn, #office-out-btn {
+    color: var(--primary-accent);
+}
+#office-in-btn:hover, #office-out-btn:hover {
+    color: var(--text-primary);
+    border-color: var(--primary-accent);
+}
+#office-in-btn svg, #office-out-btn svg {
+    stroke: var(--primary-accent);
+    transition: stroke 0.2s ease-in-out;
+}
+#office-in-btn:hover svg, #office-out-btn:hover svg {
+    stroke: var(--text-primary);
+}
+
+
+#reset-time-btn {
+    color: var(--red);
+}
+#reset-time-btn:hover {
+    border-color: var(--red);
+}
+#reset-time-btn svg {
+    stroke: var(--red);
+}
+
+.attendance-log {
+    background: rgba(0,0,0,0.3);
+    padding: 0.5rem 1rem;
+    border-radius: 8px;
+    font-size: 0.9rem;
+    border-left: 3px solid var(--primary-accent);
+}
+
+.attendance-log p {
+    margin: 0.3rem 0;
+    color: var(--text-secondary);
+}
+.attendance-log span {
+    color: var(--text-primary);
+    font-weight: 500;
+}
+
+/* --- Main Content Cards --- */
+.main-content {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+    gap: 2rem;
+}
+
+.card {
+    background: var(--card-bg-color);
+    border: 1px solid var(--border-color);
+    border-radius: 12px;
+    padding: 1.5rem 2rem;
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
+    animation: fadeInUp 0.7s ease-out;
+}
+
+.card h2 {
+    font-family: var(--font-heading);
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    font-size: 1.5rem;
+    font-weight: 500;
+    color: var(--primary-accent);
+    border-bottom: 1px solid var(--border-color);
+    padding-bottom: 1rem;
+    margin: 0 0 1.5rem 0;
+}
+
+.card h2 svg {
+    stroke: var(--primary-accent);
+}
+
+/* --- Tasks Section --- */
+.task-buttons {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+}
+
+.task-btn {
+    padding: 0.8rem;
+    background-color: transparent;
+    color: var(--text-secondary);
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-size: 1rem;
+    font-weight: 500;
+}
+
+.task-btn:hover {
+    border-color: var(--primary-accent);
+    color: var(--primary-accent);
+}
+
+.task-btn.active {
+    background-color: var(--primary-accent);
+    border-color: var(--primary-accent);
+    color: var(--bg-color);
+    font-weight: 600;
+    box-shadow: 0 0 15px var(--shadow-color);
+}
+
+.task-note-area {
+    width: 100%;
+    height: 150px;
+    background-color: rgba(17, 24, 39, 0.8);
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    padding: 1rem;
+    color: var(--text-primary);
+    font-family: var(--font-body);
+    resize: vertical;
+    margin-top: 1rem;
+    box-sizing: border-box;
+    transition: border-color 0.3s, box-shadow 0.3s;
+}
+
+.task-note-area:focus {
+    outline: none;
+    border-color: var(--primary-accent);
+    box-shadow: 0 0 10px var(--shadow-color);
+}
+
+/* --- Calendar Section --- */
+.calendar-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1.5rem;
+}
+
+#month-year-header {
+    font-family: var(--font-heading);
+    font-size: 1.5rem;
+    font-weight: 500;
+    color: var(--text-primary);
+}
+
+#prev-month-btn, #next-month-btn {
+    background: none;
+    border: 1px solid var(--border-color);
+    color: var(--text-secondary);
+    font-size: 1.5rem;
+    cursor: pointer;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    transition: all 0.3s ease;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#prev-month-btn:hover, #next-month-btn:hover {
+    border-color: var(--primary-accent);
+    color: var(--primary-accent);
+}
+
+.calendar-weekdays, .calendar-days-grid {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    text-align: center;
+}
+
+.calendar-weekdays div {
+    font-weight: 600;
+    padding-bottom: 1rem;
+    color: var(--text-secondary);
+}
+
+.calendar-days-grid div {
+    padding: 0.75rem 0;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.2s, color 0.2s;
+    position: relative;
+    border: 1px solid transparent;
+    color: var(--text-primary); /* BUG FIX: Explicitly set text color */
+}
+
+.calendar-days-grid div:hover:not(.empty) {
+    background-color: rgba(34, 211, 238, 0.1);
+    border-color: rgba(34, 211, 238, 0.3);
+}
+.calendar-days-grid .empty {
+    cursor: default;
+}
+
+.calendar-days-grid .sunday {
+    color: var(--red);
+}
+
+.calendar-days-grid .today {
+    border: 1px solid var(--primary-accent);
+    color: var(--primary-accent);
+    font-weight: bold;
+}
+
+.calendar-days-grid .selected {
+    background-color: var(--primary-accent);
+    color: var(--bg-color) !important;
+    font-weight: bold;
+    box-shadow: 0 0 10px var(--shadow-color);
+}
+
+.calendar-days-grid .has-note::after {
+    content: '';
+    position: absolute;
+    bottom: 6px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 6px;
+    height: 6px;
+    background-color: var(--green);
+    border-radius: 50%;
+}
+.selected.has-note::after {
+    background-color: var(--bg-color);
+}
+
+/* --- Modal Styles --- */
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.7);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+    backdrop-filter: blur(5px);
+}
+
+.modal-content {
+    background: var(--bg-color);
+    padding: 2rem;
+    border-radius: 12px;
+    border: 1px solid var(--border-color);
+    width: 90%;
+    max-width: 400px;
+    text-align: center;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+    animation: fadeInUp 0.3s ease-out;
+}
+
+.modal-content h2 {
+    margin-top: 0;
+    color: var(--primary-accent);
+    border-bottom: none;
+    padding-bottom: 0;
+    margin-bottom: 0.5rem;
+    font-family: var(--font-heading);
+}
+
+.modal-content p {
+    color: var(--text-secondary);
+    margin-bottom: 1.5rem;
+}
+
+#info-modal-message {
+    font-size: 1.1rem;
+    line-height: 1.5;
+}
+
+.modal-content input[type="password"] {
+    width: 100%;
+    padding: 0.8rem;
+    background-color: rgba(17, 24, 39, 0.8);
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    color: var(--text-primary);
+    font-family: var(--font-body);
+    margin-bottom: 1.5rem;
+    box-sizing: border-box;
+    text-align: center;
+    font-size: 1.2rem;
+}
+
+.modal-content input[type="password"]:focus {
+    outline: none;
+    border-color: var(--primary-accent);
+    box-shadow: 0 0 10px var(--shadow-color);
+}
+
+.modal-actions {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+}
+
+.modal-actions button {
+    padding: 0.6rem 1.2rem;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: 500;
+    font-size: 0.9rem;
+    transition: all 0.3s ease;
+    border: 1px solid;
+    font-family: var(--font-body);
+}
+
+#submit-password-btn, #submit-notes-password-btn, #info-modal-close-btn {
+    background-color: var(--primary-accent);
+    color: var(--bg-color);
+    border-color: var(--primary-accent);
+}
+
+ #submit-password-btn:hover, #submit-notes-password-btn:hover, #info-modal-close-btn:hover {
+    opacity: 0.9;
+ }
+
+#cancel-reset-btn, #cancel-notes-btn {
+    background: transparent;
+    color: var(--text-secondary);
+    border-color: var(--border-color);
+}
+
+#cancel-reset-btn:hover, #cancel-notes-btn:hover {
+    background-color: var(--border-color);
+    color: var(--text-primary);
+}
+
+.error-message {
+    color: var(--red);
+    margin-top: 1rem;
+    font-weight: 500;
+    min-height: 20px;
+}
+
+/* --- Responsive Design --- */
+@media (max-width: 1200px) {
+    .main-content {
+        grid-template-columns: 1fr;
+    }
+}
+@media (max-width: 768px) {
+    .dashboard-container {
+        padding: 1rem;
+    }
+    .dashboard-header, .time-attendance {
+        flex-direction: column;
+        align-items: stretch;
+        text-align: center;
+    }
+    .user-profile {
+        flex-direction: column;
+        text-align: center;
+    }
+    .main-content {
+        gap: 1.5rem;
+    }
+    .card {
+        padding: 1rem 1.5rem;
+    }
+    .task-buttons {
+        grid-template-columns: 1fr;
+    }
+    .clock {
+        width: 100%;
+        font-size: 1.8rem;
+    }
+}
